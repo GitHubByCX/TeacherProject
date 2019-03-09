@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>Bootstrap 实例 - 标签页（Tab）插件</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</head>
+<body>
+
+<ul id="myTab" class="nav nav-tabs">
+	<li class="active">
+		<a href="#home" data-toggle="tab">
+			 老白云
+		</a>
+	</li>
+	<li><a href="#ios" data-toggle="tab">学历排名</a></li>  
+	<li><a href="#iod" data-toggle="tab">职称排名</a></li>
+	<li><a href="#ioq" data-toggle="tab">个人特长</a></li>
+	<li><a href="#iow" data-toggle="tab">学校周边人员</a></li>
+	<li><a href="#ioe" data-toggle="tab">最受学生喜爱的教师</a></li>
+	<li><a href="#ior" data-toggle="tab">优秀班主任</a></li>
+	<li><a href="#iot" data-toggle="tab">优秀就业导师</a></li>
+	<li><a href="#ioy" data-toggle="tab">优秀科研成果能力</a></li>
+	<li><a href="#iou" data-toggle="tab">宣传能手</a></li>
+	<li><a href="#ioi" data-toggle="tab">综合排名</a></li>
+	<li class="dropdown">
+		<a href="#" id="myTabDrop1" class="dropdown-toggle" 
+		   data-toggle="dropdown">搜索功能
+			<b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+			<li><a href="#jmeter" tabindex="-1" data-toggle="tab">特长搜索功能</a></li>
+			<li><a href="#ejb" tabindex="-1" data-toggle="tab">学校周边人员</a></li>
+		</ul>
+	</li>
+</ul>
+<div id="myTabContent" class="tab-content">
+	<div class="tab-pane fade in active" id="home">
+		<p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>手机号码</th>
+				<th>
+						<div class="dropdown">
+							<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+									data-toggle="dropdown">
+								入职时间
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" onclick="updateEntryTime(1)">入职1年</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" onclick="updateEntryTime(2)">入职2年</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" onclick="updateEntryTime(3)">入职3年</a>
+								</li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" onclick="updateEntryTime(4)">入职4年起</a>
+								</li>
+							</ul>
+						</div>
+				</th>
+				<th>地址</th>
+			</tr>
+		</thead>
+		<tbody class="laobaiyun"></tbody>
+	</table>
+		</p>
+	</div>
+	<div class="tab-pane fade" id="ios">   <!--//ios学历排名-->
+		<p>
+				<table class="table">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>手机号码</th>
+				<th>
+						<div class="dropdown">
+							<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+									data-toggle="dropdown">
+								学历排名
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" onclick="updateTeaEdu('专科')">专科</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" onclick="updateTeaEdu('硕士')">硕士</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" onclick="updateTeaEdu('本科')">本科</a>
+								</li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" onclick="updateTeaEdu('博士')">博士</a>
+								</li>
+							</ul>
+						</div>
+				</th>
+				<th>地址</th>
+			</tr>
+		</thead>
+		<tbody class="teaEdu">	</tbody>
+	</table>	
+		</p>
+	</div>
+	
+
+	
+	<div class="tab-pane fade" id="iod">		<!--//职称排名-->
+		<p> 
+					<table class="table">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>手机号码</th>
+				<th>
+						<div class="dropdown">
+							<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+									data-toggle="dropdown">
+								职称
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu Technical" role="menu" aria-labelledby="dropdownMenu1">
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1">助教</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" >讲师</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1">副教授</a>
+								</li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1">教授</a>
+								</li>
+							</ul>
+						</div>
+				</th>
+				<th>地址</th>
+			</tr>
+		</thead>
+		<tbody class="TeaTechnical"></tbody>
+	</table>
+		</p>
+	</div>
+	<!--//ios个人特长-->
+		<div class="tab-pane fade" id="ioq">   
+		<p>
+				<table class="table">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>手机号码</th>
+				<th>
+		<div class="input-group" style="width: 200px;">
+			<input type="text" class="form-control techang" placeholder="搜索特长">
+			<span class="input-group-addon" onclick="selectTechang()">搜索</span>
+		</div>
+		<span>特长</span>
+				</th>
+				<th>入职年份</th>
+			</tr>
+		</thead>
+		<tbody class="teaSpe">
+			
+		</tbody>
+	</table>	
+		</p>
+	</div>
+	<!--//ios学校周边-->
+		<div class="tab-pane fade" id="iow">   
+		<p>
+				<table class="table">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>手机号码</th>
+				<th> 
+						<select class="selectpicker address">
+						    <option value="白云周边">白云周边</option>
+						    <option value="非白云周边">非白云周边</option>
+                           
+						</select>
+				</th>
+				<th>地址</th>
+			</tr>
+		</thead>
+		<tbody class="addres">
+			<tr class="active">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="success">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="warning">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="danger">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+		</tbody>
+	</table>	
+		</p>
+	</div>
+		<!--//ios受欢迎老师-->
+		<div class="tab-pane fade" id="ioe">   
+		<p>
+				<table class="table">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>手机号码</th>
+				<th>
+						<div class="dropdown">
+							<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+									data-toggle="dropdown">
+								评价得分情况
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">5分</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">8分</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">10分</a>
+								</li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">10起</a>
+								</li>
+							</ul>
+						</div>
+				</th>
+				<th>地址</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="active">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="success">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="warning">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="danger">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+		</tbody>
+	</table>	
+		</p>
+	</div>
+
+
+		<!--//ios优秀班主任-->
+		<div class="tab-pane fade" id="ior">   
+		<p>
+				<table class="table">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>手机号码</th>
+				<th>
+						<div class="dropdown">
+							<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+									data-toggle="dropdown">
+								班主任教师
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">兼职班主任</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">专职班主任</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">开发中</a>
+								</li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">开发中</a>
+								</li>
+							</ul>
+						</div>
+				</th>
+				<th>地址</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="active">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="success">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="warning">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="danger">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+		</tbody>
+	</table>	
+		</p>
+	</div>
+			<!--//ios优秀导师-->
+		<div class="tab-pane fade" id="iot">   
+		<p>
+				<table class="table">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>手机号码</th>
+				<th>
+						<div class="dropdown">
+							<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+									data-toggle="dropdown">
+								排名搜索
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前10名</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前20名</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">校外就业指导教师</a>
+								</li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">开发中</a>
+								</li>
+							</ul>
+						</div>
+				</th>
+				<th>地址</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="active">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="success">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="warning">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="danger">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+		</tbody>
+	</table>	
+		</p>
+	</div>
+			<!--//ios优秀导师-->
+		<div class="tab-pane fade" id="ioy">   
+		<p>
+				<table class="table">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>手机号码</th>
+				<th>
+						<div class="dropdown">
+							<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+									data-toggle="dropdown">
+								优秀导师
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前10名</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前20名</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前30名</a>
+								</li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前40名</a>
+								</li>
+							</ul>
+						</div>
+				</th>
+				<th>地址</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="active">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="success">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="warning">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="danger">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+		</tbody>
+	</table>	
+		</p>
+	</div>
+			<!--//ios优秀导师-->
+		<div class="tab-pane fade" id="iou">   
+		<p>
+				<table class="table">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>手机号码</th>
+				<th>
+						<div class="dropdown">
+							<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+									data-toggle="dropdown">
+								金牌宣传员
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前10名</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前20名</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前30名</a>
+								</li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前40名</a>
+								</li>
+							</ul>
+						</div>
+				</th>
+				<th>地址</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="active">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="success">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="warning">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="danger">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+		</tbody>
+	</table>	
+		</p>
+	</div>
+	
+				<!--//ios宣传能手-->
+		<div class="tab-pane fade" id="ioi">   
+		<p>
+				<table class="table">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>手机号码</th>
+				<th>
+						<div class="dropdown">
+							<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+									data-toggle="dropdown">
+								宣传排名
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前10名</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前20名</a>
+								</li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前30名</a>
+								</li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation">
+									<a role="menuitem" tabindex="-1" href="#">前40名</a>
+								</li>
+							</ul>
+						</div>
+				</th>
+				<th>地址</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="active">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="success">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="warning">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+			<tr class="danger">
+				<td>陈亚楠</td>
+				<td>13729566967</td>
+				<td>2018-4-7</td>
+				<td>广东</td>
+			</tr>
+		</tbody>
+	</table>	
+		</p>
+	</div>
+	<div class="tab-pane fade" id="jmeter">
+		<p>开发中</p>
+	</div>
+	<div class="tab-pane fade" id="ejb">
+		<p>开发中</p>
+	</div>
+</div>
+
+<script type="text/javascript" src=".../../toolsPage/js/getRootPath.js"></script>
+<script type="text/javascript" src=".../../ManagerStyleFolder/js/UpdateAmend.js?var=1"></script>
+<script type="text/javascript">
+function selectTechang(){
+	console.log($(".techang").val());
+	var teatechang= $(".techang").val();
+	$.ajax("http://localhost:8080/DecisionAid/selecttechang.do",// 发送请求的URL字符串。
+			{
+			dataType : "json", // 预期服务器返回的数据类型。
+   			type : "post", //  请求方式 POST或GET
+   			   // 发送到服务器的数据。
+		    data:JSON.stringify({teaSpe:teatechang}),
+		    //缺教学经验
+		    contentType:"application/json", //  发送信息至服务器时的内容编码类型
+			
+		 
+		   async: true , // 默认设置下，所有请求均为异步请求。如果设置为false，则发送同步请求
+		   // 请求成功后的回调函数。
+		   success :function(data){
+			   $(".teaSpe").html(""); 
+			   for ( var i in data) {				
+				 $(".teaSpe").append("<tr class='warning'>"+"<td>"+data[i].teaName+"</td>"+"<td>"+data[i].teaPhone+"</td>"+"<td>"+data[i].teaSpe+"</td>"+"<td>"+data[i].teaTimeOfGra+"</td></tr>");
+
+			}
+			
+			 
+		   },error:function(){
+		   	alert("发送失败了,请重新输入！")
+		   }
+		   // 请求出错时调用的函数
+		  
+	});
+}
+
+
+</script>
+</body>
+</html>

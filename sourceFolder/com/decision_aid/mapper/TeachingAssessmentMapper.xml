@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.TeachingAssessmentMapper">
+	<resultMap id="BaseResultMap" type="com.decision_aid.bean.TeachingAssessment">
+		<id column="Id" jdbcType="INTEGER" property="id" />
+   		<result column="tId" jdbcType="INTEGER" property="tId" />
+    	<result column="t_bigPoints" jdbcType="VARCHAR" property="bigPoints" />
+    	<result column="t_smallPoints" jdbcType="VARCHAR" property="smallPoints" />
+    	<result column="t_totalPoints" jdbcType="INTEGER" property="totalPoints" />
+    	<result column="t_author" jdbcType="VARCHAR" property="author" />
+    	<result column="t_addTime" jdbcType="DATE" property="addTime" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+    	Id, tId, t_bigPoints, t_smallPoints, t_totalPoints,t_author,t_addTime
+    </sql>
+    
+    <!-- 向教学月度考核项表(teaching_assessment)中添加一条数据 -->
+    <insert id="insertTeachingAssessment" parameterType="com.decision_aid.bean.TeachingAssessment">
+    	insert into teaching_assessment
+    	<trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        Id,
+	      </if>
+	      <if test="tId != null">
+	        tId,
+	      </if>
+	      <if test="bigPoints != null">
+	        t_bigPoints,
+	      </if>
+	      <if test="smallPoints != null">
+	        t_smallPoints,
+	      </if>
+	      <if test="totalPoints != null">
+	        t_totalPoints,
+	      </if>
+	      <if test="author != null">
+	        t_author,
+	      </if>
+	      <if test="addTime != null">
+	        t_addTime,
+	      </if>
+    	</trim>
+    	<trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        #{id,jdbcType=INTEGER},
+	      </if>
+	      <if test="tId != null">
+	        #{tId,jdbcType=INTEGER},
+	      </if>
+	      <if test="bigPoints != null">
+	        #{bigPoints,jdbcType=VARCHAR},
+	      </if>
+	      <if test="smallPoints != null">
+	        #{smallPoints,jdbcType=VARCHAR},
+	      </if>
+	      <if test="totalPoints != null">
+	        #{totalPoints,jdbcType=INTEGER},
+	      </if>
+	      <if test="author != null">
+	        #{author,jdbcType=VARCHAR},
+	      </if>
+	      <if test="addTime != null">
+	        #{addTime,jdbcType=DATE},
+	      </if>
+    	</trim>
+    </insert>
+    
+    <!-- 向教学月度考核项表(teaching_assessment)中修改一条数据 -->
+    <update id="updateTeachingAssessmentById" parameterType="com.decision_aid.bean.TeachingAssessment">
+    	update teaching_assessment
+	    <set>
+	      <if test="tId != null">
+	        tId = #{tId,jdbcType=INTEGER},
+	      </if>
+	      <if test="bigPoints != null">
+	        t_bigPoints = #{bigPoints,jdbcType=VARCHAR},
+	      </if>
+	      <if test="smallPoints != null">
+	        t_smallPoints = #{smallPoints,jdbcType=VARCHAR},
+	      </if>
+	      <if test="totalPoints != null">
+	        t_totalPoints = #{totalPoints,jdbcType=INTEGER},
+	      </if>
+	      <if test="author != null">
+	        t_author = #{author,jdbcType=VARCHAR},
+	      </if>
+	      <if test="addTime != null">
+	        t_addTime = #{addTime,jdbcType=DATE},
+	      </if>
+	    </set>
+	    where Id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 删除考核项目中的数据通过id -->
+    <delete id="deleteTeachingAssessmentById" parameterType="java.lang.Integer">
+    	delete from teaching_assessment where Id = #{id,jdbcType=INTEGER}
+    </delete>
+    
+</mapper>

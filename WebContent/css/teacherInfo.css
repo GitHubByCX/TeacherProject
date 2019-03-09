@@ -1,0 +1,19 @@
+body{
+	background: #4CAE4C;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+#Info{
+	margin: 10% 5%;
+	padding: 5% 10%;
+	background: white;
+	border-radius: 15px;
+}
+#Cultural-level,#Teaching-experience,#Enterprise-experience,#Honour,#Headmaster,#EmploymentGuidance,#Plan2019,#Plan2020,#Plan2021{
+	display: none;
+	margin: 10% 5%;
+	padding: 5% 10%;
+	background: white;
+	border-radius: 15px;
+}
+#2019Plan,#2020Plan,#2021Plan

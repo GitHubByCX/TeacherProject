@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.TeacherEaccessviolationMapper">
+  <resultMap id="BaseResultMap" type="com.decision_aid.bean.TeacherEaccessviolation">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="tea_id" jdbcType="VARCHAR" property="teaId" />
+    <result column="t_startTime" jdbcType="VARCHAR" property="tStarttime" />
+    <result column="t_endTime" jdbcType="VARCHAR" property="tEndtime" />
+    <result column="t_teachClass" jdbcType="VARCHAR" property="tTeachclass" />
+    <result column="t_course" jdbcType="VARCHAR" property="tCourse" />
+    <result column="t_class" jdbcType="INTEGER" property="tClass" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, tea_id, t_startTime, t_endTime, t_teachClass, t_course, t_class
+  </sql>
+  
+  <!-- 通过teaId搜索TeacherEaccessviolation(教学经验表)的数据 -->
+  <select id="selectTeacherEaccessviolationByTeaId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	  	select * from teacher_eaccessviolation where tea_id=123456
+  </select>
+  
+  <!-- 通过teaId修改TeacherEaccessviolation(教学经验表)的数据 -->
+  <update id="updateTeacherEaccessviolationByTeaId" parameterType="com.decision_aid.bean.TeacherEaccessviolation">
+    update teacher_eaccessviolation
+    <set>
+      <if test="tStarttime != null">
+        t_startTime = #{tStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="tEndtime != null">
+        t_endTime = #{tEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="tTeachclass != null">
+        t_teachClass = #{tTeachclass,jdbcType=VARCHAR},
+      </if>
+      <if test="tCourse != null">
+        t_course = #{tCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="tClass != null">
+        t_class = #{tClass,jdbcType=INTEGER},
+      </if>
+    </set>
+    where tea_id = #{teaId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher_eaccessviolation
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher_eaccessviolation
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.decision_aid.bean.TeacherEaccessviolation">
+    insert into teacher_eaccessviolation (Id, tea_id, t_startTime, 
+      t_endTime, t_teachClass, t_course, 
+      t_class)
+    values (#{id,jdbcType=INTEGER}, #{teaId,jdbcType=VARCHAR}, #{tStarttime,jdbcType=VARCHAR}, 
+      #{tEndtime,jdbcType=VARCHAR}, #{tTeachclass,jdbcType=VARCHAR}, #{tCourse,jdbcType=VARCHAR}, 
+      #{tClass,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.decision_aid.bean.TeacherEaccessviolation">
+    insert into teacher_eaccessviolation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="teaId != null">
+        tea_id,
+      </if>
+      <if test="tStarttime != null">
+        t_startTime,
+      </if>
+      <if test="tEndtime != null">
+        t_endTime,
+      </if>
+      <if test="tTeachclass != null">
+        t_teachClass,
+      </if>
+      <if test="tCourse != null">
+        t_course,
+      </if>
+      <if test="tClass != null">
+        t_class,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teaId != null">
+        #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="tStarttime != null">
+        #{tStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="tEndtime != null">
+        #{tEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="tTeachclass != null">
+        #{tTeachclass,jdbcType=VARCHAR},
+      </if>
+      <if test="tCourse != null">
+        #{tCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="tClass != null">
+        #{tClass,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.decision_aid.bean.TeacherEaccessviolation">
+    update teacher_eaccessviolation
+    <set>
+      <if test="teaId != null">
+        tea_id = #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="tStarttime != null">
+        t_startTime = #{tStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="tEndtime != null">
+        t_endTime = #{tEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="tTeachclass != null">
+        t_teachClass = #{tTeachclass,jdbcType=VARCHAR},
+      </if>
+      <if test="tCourse != null">
+        t_course = #{tCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="tClass != null">
+        t_class = #{tClass,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.decision_aid.bean.TeacherEaccessviolation">
+    update teacher_eaccessviolation
+    set tea_id = #{teaId,jdbcType=VARCHAR},
+      t_startTime = #{tStarttime,jdbcType=VARCHAR},
+      t_endTime = #{tEndtime,jdbcType=VARCHAR},
+      t_teachClass = #{tTeachclass,jdbcType=VARCHAR},
+      t_course = #{tCourse,jdbcType=VARCHAR},
+      t_class = #{tClass,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="inserjiaoxuejingyan" parameterType="com.decision_aid.bean.TeacherEaccessviolation">
+  	 insert into teacher_eaccessviolation(tea_id,t_startTime,t_teachClass,t_course,t_class,t_evaluate) values(#{teaId},#{tStartTime},#{tTeachClass},#{tCourse},#{tClass},#{tEvaluate});
+  </insert>
+</mapper>

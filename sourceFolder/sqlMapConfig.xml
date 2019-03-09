@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>		
+
+	<mappers>
+		<mapper resource="com/decision_aid/mapper/AuthorityManagementMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/ClExperienceMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/DivisionManagementMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/GdCounselMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/RoleManagementMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/TeacherEaccessviolationMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/TeacherEnterpriseMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/TeacherHonorMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/TeacherInfoMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/TheplanMapper.xml" />
+		
+		<mapper resource="com/decision_aid/mapper/BackboneTeacherMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/TeachingAssessmentMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/MothlyCheckMapper.xml" />
+		<mapper resource="com/decision_aid/mapper/ClassTeacherMapper.xml" />
+	</mappers>
+	
+</configuration>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.TheplanMapper">
+  <resultMap id="BaseResultMap" type="com.decision_aid.bean.Theplan">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="tea_id" jdbcType="VARCHAR" property="teaId" />
+    <result column="tp_edu" jdbcType="VARCHAR" property="tpEdu" />
+    <result column="tp_technical" jdbcType="VARCHAR" property="tpTechnical" />
+    <result column="tp_skill" jdbcType="VARCHAR" property="tpSkill" />
+    <result column="tp_ ability" jdbcType="VARCHAR" property="tpAbility" />
+    <result column="tp_teaAbi" jdbcType="VARCHAR" property="tpTeaabi" />
+    <result column="tp_thesis" jdbcType="VARCHAR" property="tpThesis" />
+    <result column="tp_year" jdbcType="VARCHAR" property="tpYear" />
+    <association property="teacherInfo" javaType="com.decision_aid.bean.TeacherInfo">
+    	<id column="Id" jdbcType="INTEGER" property="id" />
+	    <result column="tea_id" jdbcType="VARCHAR" property="teaId" />
+	    <result column="tea_pwd" jdbcType="VARCHAR" property="teaPwd" />
+	    <result column="tea_name" jdbcType="VARCHAR" property="teaName" />
+	    <result column="tea_sex" jdbcType="VARCHAR" property="teaSex" />
+	    <result column="tea_birth" jdbcType="DATE" property="teaBirth" />
+	    <result column="tea_phone" jdbcType="VARCHAR" property="teaPhone" />
+	    <result column="tea_edu" jdbcType="VARCHAR" property="teaEdu" />
+	    <result column="tea_TimeOfGra" jdbcType="DATE" property="teaTimeOfGra" />
+	    <result column="tea_gra" jdbcType="VARCHAR" property="teaGra" />
+	    <result column="tea_specialty" jdbcType="VARCHAR" property="teaSpecialty" />
+	    <result column="tea_entryTime" jdbcType="DATE" property="teaEntrytime" />
+	    <result column="tea_certification" jdbcType="BIT" property="teaCertification" />
+	    <result column="tea_cer" jdbcType="TINYINT" property="teaCer" />
+	    <result column="tea_hobby" jdbcType="VARCHAR" property="teaHobby" />
+	    <result column="tea_spe" jdbcType="VARCHAR" property="teaSpe" />
+	    <result column="tea_cha" jdbcType="VARCHAR" property="teaCha" />
+	    <result column="tea_motto" jdbcType="VARCHAR" property="teaMotto" />
+	     <result column="tea_address" jdbcType="VARCHAR" property="teaAddress" />
+	     <result column="tea_Bigdepartment" jdbcType="VARCHAR" property="teaBigdepartment" />
+    </association>
+  </resultMap>
+  
+  <!-- 搜索当前年份下的职称和教师信息 -->
+  <select id="selectTeacherInfoBytpTechnical" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT * FROM decision_aids.theplan join decision_aids.teacher_info on theplan.tea_id=teacher_info.tea_id where theplan.tp_year=year(CURRENT_DATE) and theplan.tp_technical=#{str};
+  </select>
+  
+ <insert id="sannianguihua" parameterType="com.decision_aid.bean.Theplan">
+  		insert into theplan(tea_id,tp_edu,tp_technical,tp_skill,tp_ability,tp_teaAbi,tp_thesis,tp_year) values(#{teaId},#{tpEdu},#{tpTechnical},#{tpSkill},#{tpAbility},#{tpTeaabi},#{tpThesis},#{tpYear});
+  </insert>
+</mapper>

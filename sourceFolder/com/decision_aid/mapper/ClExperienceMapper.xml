@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.ClExperienceMapper">
+  <resultMap id="BaseResultMap" type="com.decision_aid.bean.ClExperience">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="tea_id" jdbcType="VARCHAR" property="teaId" />
+    <result column="cl_startTime" jdbcType="VARCHAR" property="clStarttime" />
+    <result column="cl_endTime" jdbcType="VARCHAR" property="clEndtime" />
+    <result column="cl_className" jdbcType="VARCHAR" property="clClassname" />
+    <result column="cl_num" jdbcType="INTEGER" property="clNum" />
+    <result column="cl_evaluate" jdbcType="VARCHAR" property="clEvaluate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, tea_id, cl_startTime, cl_endTime, cl_className, cl_num, cl_evaluate
+  </sql>
+  
+  <!-- 通过tea_id搜索cl_experience(班主任经验表)中的数据  -->
+  <select id="selectBanZhuRenByTeaId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from cl_experience where tea_id=#{teaId}
+  </select>
+  
+  <!-- 通过tea_id修改cl_experience(班主任经验表)中的数据  -->
+  <update id="updateClExperienceByTeaId" parameterType="com.decision_aid.bean.ClExperience">
+    update cl_experience
+    <set>
+      <if test="clStarttime != null">
+        cl_startTime = #{clStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="clEndtime != null">
+        cl_endTime = #{clEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="clClassname != null">
+        cl_className = #{clClassname,jdbcType=VARCHAR},
+      </if>
+      <if test="clNum != null">
+        cl_num = #{clNum,jdbcType=INTEGER},
+      </if>
+      <if test="clEvaluate != null">
+        cl_evaluate = #{clEvaluate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tea_id = #{teaId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cl_experience
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cl_experience
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.decision_aid.bean.ClExperience">
+    insert into cl_experience (Id, tea_id, cl_startTime, 
+      cl_endTime, cl_className, cl_num, 
+      cl_evaluate)
+    values (#{id,jdbcType=INTEGER}, #{teaId,jdbcType=VARCHAR}, #{clStarttime,jdbcType=VARCHAR}, 
+      #{clEndtime,jdbcType=VARCHAR}, #{clClassname,jdbcType=VARCHAR}, #{clNum,jdbcType=INTEGER}, 
+      #{clEvaluate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.decision_aid.bean.ClExperience">
+    insert into cl_experience
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="teaId != null">
+        tea_id,
+      </if>
+      <if test="clStarttime != null">
+        cl_startTime,
+      </if>
+      <if test="clEndtime != null">
+        cl_endTime,
+      </if>
+      <if test="clClassname != null">
+        cl_className,
+      </if>
+      <if test="clNum != null">
+        cl_num,
+      </if>
+      <if test="clEvaluate != null">
+        cl_evaluate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teaId != null">
+        #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="clStarttime != null">
+        #{clStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="clEndtime != null">
+        #{clEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="clClassname != null">
+        #{clClassname,jdbcType=VARCHAR},
+      </if>
+      <if test="clNum != null">
+        #{clNum,jdbcType=INTEGER},
+      </if>
+      <if test="clEvaluate != null">
+        #{clEvaluate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.decision_aid.bean.ClExperience">
+    update cl_experience
+    <set>
+      <if test="teaId != null">
+        tea_id = #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="clStarttime != null">
+        cl_startTime = #{clStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="clEndtime != null">
+        cl_endTime = #{clEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="clClassname != null">
+        cl_className = #{clClassname,jdbcType=VARCHAR},
+      </if>
+      <if test="clNum != null">
+        cl_num = #{clNum,jdbcType=INTEGER},
+      </if>
+      <if test="clEvaluate != null">
+        cl_evaluate = #{clEvaluate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.decision_aid.bean.ClExperience">
+    update cl_experience
+    set tea_id = #{teaId,jdbcType=VARCHAR},
+      cl_startTime = #{clStarttime,jdbcType=VARCHAR},
+      cl_endTime = #{clEndtime,jdbcType=VARCHAR},
+      cl_className = #{clClassname,jdbcType=VARCHAR},
+      cl_num = #{clNum,jdbcType=INTEGER},
+      cl_evaluate = #{clEvaluate,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  	<insert id="insertbanzhuren" parameterType="com.decision_aid.bean.ClExperience">
+  		insert into cl_experience(tea_id,cl_startTime,cl_endTime,cl_className,cl_num,cl_evaluate) values (#{teaId},#{clStartTime},#{clEndTime},#{clClassname},#{clNum},#{clEvaluate});
+  	</insert>
+  
+  	
+  
+  
+  
+  	
+</mapper>

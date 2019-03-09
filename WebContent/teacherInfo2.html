@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0" />
+		
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/teacherInfo.css" />
+		
+		<title></title>
+	</head>
+
+	<body>
+	<a href="toManagerIndexPage.do">toManagerIndexPage</a>
+		<div class="container">
+			<form class="form-horizontal" role="form">
+				<!--基本信息-->
+				
+				<div id="Info">
+				<h3 align="center">教师发展管理登陆</h3>
+					<h4 style="margin-top:40px;">请填写基本信息</h4>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input type="text" class="form-control" placeholder="请输入教职工账号" id="user">
+						</div>
+					</div> 
+				<div class="form-group">
+						<div class="col-xs-12">
+							<input type="password" class="form-control" placeholder="请输入密码" id="password">
+						</div>
+					</div> 
+					<input onclick="login();" type="button" value="登陆" class="btn btn-success form-control" style="margin-top: 5%;"/>
+				</div>
+				
+			</form>
+		</div>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/registered.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+			zaijia();
+			})
+			
+		function zaijia(){
+			
+			    $.ajax("http://localhost:8080/DecisionAid/selectgerenziliao.do",// 发送请求的URL字符串。
+											
+											{
+											dataType : "json", // 预期服务器返回的数据类型。
+								   			type : "post", //  请求方式 POST或GET
+								   				
+								   			   // 发送到服务器的数据。 
+										    data:JSON.stringify({teaId:"fsdjhkafbioubhjvbjh",}),
+										    contentType:"application/json", //  发送信息至服务器时的内容编码类型
+											
+										 
+										   async: true , // 默认设置下，所有请求均为异步请求。如果设置为false，则发送同步请求
+										   // 请求成功后的回调函数。
+										   success :function(data){
+										  	 
+										   },error:function(){ 
+										   
+										   
+										   }
+						   // 请求出错时调用的函数
+						  
+									});  
+		}
+		</script>
+	</body>
+
+</html>

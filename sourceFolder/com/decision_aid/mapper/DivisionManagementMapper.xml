@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.DivisionManagementMapper">
+  <resultMap id="BaseResultMap" type="com.decision_aid.bean.DivisionManagement">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="tea_id" jdbcType="VARCHAR" property="teaId" />
+    <result column="dm_id" jdbcType="INTEGER" property="dmId" />
+    <result column="dm_classroom" jdbcType="VARCHAR" property="dmClassroom" />
+    <result column="dm_remake" jdbcType="VARCHAR" property="dmRemake" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, tea_id, dm_id, dm_classroom, dm_remake
+  </sql>
+  
+  <!-- 通过TeaId搜索教师所属的部门 -->
+  <select id="selectDivisionManagementByTeaId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from division_management where tea_id=123456
+  </select>
+  
+  <!-- 通过TeaId修改division_management(教师所属表)的数据 -->
+  <update id="updateDivisionManagementByTeaId" parameterType="com.decision_aid.bean.DivisionManagement">
+    update division_management
+    <set>
+      <if test="dmId != null">
+        dm_id = #{dmId,jdbcType=INTEGER},
+      </if>
+      <if test="dmClassroom != null">
+        dm_classroom = #{dmClassroom,jdbcType=VARCHAR},
+      </if>
+      <if test="dmRemake != null">
+        dm_remake = #{dmRemake,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tea_id = #{teaId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from division_management
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from division_management
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.decision_aid.bean.DivisionManagement">
+    insert into division_management (Id, tea_id, dm_id, 
+      dm_classroom, dm_remake)
+    values (#{id,jdbcType=INTEGER}, #{teaId,jdbcType=VARCHAR}, #{dmId,jdbcType=INTEGER}, 
+      #{dmClassroom,jdbcType=VARCHAR}, #{dmRemake,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.decision_aid.bean.DivisionManagement">
+    insert into division_management
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="teaId != null">
+        tea_id,
+      </if>
+      <if test="dmId != null">
+        dm_id,
+      </if>
+      <if test="dmClassroom != null">
+        dm_classroom,
+      </if>
+      <if test="dmRemake != null">
+        dm_remake,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teaId != null">
+        #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="dmId != null">
+        #{dmId,jdbcType=INTEGER},
+      </if>
+      <if test="dmClassroom != null">
+        #{dmClassroom,jdbcType=VARCHAR},
+      </if>
+      <if test="dmRemake != null">
+        #{dmRemake,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.decision_aid.bean.DivisionManagement">
+    update division_management
+    <set>
+      <if test="teaId != null">
+        tea_id = #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="dmId != null">
+        dm_id = #{dmId,jdbcType=INTEGER},
+      </if>
+      <if test="dmClassroom != null">
+        dm_classroom = #{dmClassroom,jdbcType=VARCHAR},
+      </if>
+      <if test="dmRemake != null">
+        dm_remake = #{dmRemake,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.decision_aid.bean.DivisionManagement">
+    update division_management
+    set tea_id = #{teaId,jdbcType=VARCHAR},
+      dm_id = #{dmId,jdbcType=INTEGER},
+      dm_classroom = #{dmClassroom,jdbcType=VARCHAR},
+      dm_remake = #{dmRemake,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

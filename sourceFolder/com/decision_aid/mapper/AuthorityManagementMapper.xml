@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.AuthorityManagementMapper">
+  <resultMap id="BaseResultMap" type="com.decision_aid.bean.AuthorityManagement">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="tea_id" jdbcType="VARCHAR" property="teaId" />
+    <result column="t_id" jdbcType="VARCHAR" property="tId" />
+    <result column="r_id" jdbcType="VARCHAR" property="rId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, tea_id, t_id, r_id
+  </sql>
+  
+  <!-- 通过teaId修改authority_management(权限管理表)中的数据 -->
+  <update id="updateAuthorityManagementByTeaId" parameterType="com.decision_aid.bean.AuthorityManagement">
+    update authority_management
+    <set>
+      <if test="tId != null">
+        t_id = #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="rId != null">
+        r_id = #{rId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tea_id = #{teaId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from authority_management
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from authority_management
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.decision_aid.bean.AuthorityManagement">
+    insert into authority_management (Id, tea_id, t_id, 
+      r_id)
+    values (#{id,jdbcType=INTEGER}, #{teaId,jdbcType=VARCHAR}, #{tId,jdbcType=VARCHAR}, 
+      #{rId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.decision_aid.bean.AuthorityManagement">
+    insert into authority_management
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="teaId != null">
+        tea_id,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="rId != null">
+        r_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teaId != null">
+        #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="rId != null">
+        #{rId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.decision_aid.bean.AuthorityManagement">
+    update authority_management
+    <set>
+      <if test="teaId != null">
+        tea_id = #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        t_id = #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="rId != null">
+        r_id = #{rId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.decision_aid.bean.AuthorityManagement">
+    update authority_management
+    set tea_id = #{teaId,jdbcType=VARCHAR},
+      t_id = #{tId,jdbcType=VARCHAR},
+      r_id = #{rId,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

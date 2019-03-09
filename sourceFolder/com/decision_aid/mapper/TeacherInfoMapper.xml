@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.TeacherInfoMapper">
+  <resultMap id="BaseResultMap" type="com.decision_aid.bean.TeacherInfo">
+    <result column="Id" jdbcType="INTEGER" property="id" />
+    <result column="tea_id" jdbcType="VARCHAR" property="teaId" />
+    <result column="tea_pwd" jdbcType="VARCHAR" property="teaPwd" />
+    <result column="tea_name" jdbcType="VARCHAR" property="teaName" />
+    <result column="tea_sex" jdbcType="VARCHAR" property="teaSex" />
+    <result column="tea_birth" jdbcType="DATE" property="teaBirth" />
+    <result column="tea_phone" jdbcType="VARCHAR" property="teaPhone" />
+    <result column="tea_edu" jdbcType="VARCHAR" property="teaEdu" />
+    <result column="tea_gra" jdbcType="VARCHAR" property="teaGra" />
+    <result column="tea_TimeOfGra" jdbcType="VARCHAR" property="teaTimeofgra" />
+    <result column="tea_specialty" jdbcType="VARCHAR" property="teaSpecialty" />
+    <result column="tea_entryTime" jdbcType="DATE" property="teaEntrytime" />
+    <result column="tea_certification" jdbcType="VARCHAR" property="teaCertification" />
+    <result column="tea_cer" jdbcType="VARCHAR" property="teaCer" />
+    <result column="tea_hobby" jdbcType="VARCHAR" property="teaHobby" />
+    <result column="tea_spe" jdbcType="VARCHAR" property="teaSpe" />
+    <result column="tea_cha" jdbcType="VARCHAR" property="teaCha" />
+    <result column="tea_motto" jdbcType="VARCHAR" property="teaMotto" />
+    <result column="tea_address" jdbcType="VARCHAR" property="teaAddress" />
+    <result column="tea_Bigdepartment" jdbcType="VARCHAR" property="teaBigdepartment" />
+    <result column="tea_title" jdbcType="VARCHAR" property="teaTitle" />
+  </resultMap>
+  
+  <!-- 计算入职时间到当前时间是否大于或等于year,并返回相关数据 -->
+  <select id="selectTeacherInfoByEntryTime" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	SELECT * FROM teacher_info where TIMESTAMPDIFF(YEAR,tea_entryTime,now()) >= #{year}
+  </select>
+  <!-- 通过edu(学历)查询教师信息 -->
+  <select id="selectTeacherInfoByTeaEdu" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT * FROM decision_aids.teacher_info order by tea_edu=#{edu} desc, tea_edu='博士' desc,tea_edu='硕士' desc,tea_edu='本科' desc,tea_edu='专科' desc,tea_id asc;
+  </select>
+  <!-- 通过职称来查找老师 -->
+  <select id="selectTeacherInfoByteaTitle" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT * FROM decision_aids.teacher_info order by tea_title=#{teaTitle} desc, tea_title='初级' desc,tea_title='中级' desc,tea_title='高级' desc,tea_id asc;
+  </select>
+  
+  
+  <insert id="insert" parameterType="com.decision_aid.bean.TeacherInfo">
+    insert into teacher_info (Id, tea_id, tea_pwd, 
+      tea_name, tea_sex, tea_birth, 
+      tea_phone, tea_edu, tea_gra, 
+      tea_TimeOfGra, tea_specialty, tea_entryTime, 
+      tea_certification, tea_cer, tea_hobby, 
+      tea_spe, tea_cha, tea_motto, 
+      tea_address, tea_Bigdepartment, tea_title
+      )
+    values (#{id,jdbcType=INTEGER}, #{teaId,jdbcType=VARCHAR}, #{teaPwd,jdbcType=VARCHAR}, 
+      #{teaName,jdbcType=VARCHAR}, #{teaSex,jdbcType=VARCHAR}, #{teaBirth,jdbcType=DATE}, 
+      #{teaPhone,jdbcType=VARCHAR}, #{teaEdu,jdbcType=VARCHAR}, #{teaGra,jdbcType=VARCHAR}, 
+      #{teaTimeofgra,jdbcType=VARCHAR}, #{teaSpecialty,jdbcType=VARCHAR}, #{teaEntrytime,jdbcType=DATE}, 
+      #{teaCertification,jdbcType=VARCHAR}, #{teaCer,jdbcType=VARCHAR}, #{teaHobby,jdbcType=VARCHAR}, 
+      #{teaSpe,jdbcType=VARCHAR}, #{teaCha,jdbcType=VARCHAR}, #{teaMotto,jdbcType=VARCHAR}, 
+      #{teaAddress,jdbcType=VARCHAR}, #{teaBigdepartment,jdbcType=VARCHAR}, #{teaTitle,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.decision_aid.bean.TeacherInfo">
+    insert into teacher_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="teaId != null">
+        tea_id,
+      </if>
+      <if test="teaPwd != null">
+        tea_pwd,
+      </if>
+      <if test="teaName != null">
+        tea_name,
+      </if>
+      <if test="teaSex != null">
+        tea_sex,
+      </if>
+      <if test="teaBirth != null">
+        tea_birth,
+      </if>
+      <if test="teaPhone != null">
+        tea_phone,
+      </if>
+      <if test="teaEdu != null">
+        tea_edu,
+      </if>
+      <if test="teaGra != null">
+        tea_gra,
+      </if>
+      <if test="teaTimeofgra != null">
+        tea_TimeOfGra,
+      </if>
+      <if test="teaSpecialty != null">
+        tea_specialty,
+      </if>
+      <if test="teaEntrytime != null">
+        tea_entryTime,
+      </if>
+      <if test="teaCertification != null">
+        tea_certification,
+      </if>
+      <if test="teaCer != null">
+        tea_cer,
+      </if>
+      <if test="teaHobby != null">
+        tea_hobby,
+      </if>
+      <if test="teaSpe != null">
+        tea_spe,
+      </if>
+      <if test="teaCha != null">
+        tea_cha,
+      </if>
+      <if test="teaMotto != null">
+        tea_motto,
+      </if>
+      <if test="teaAddress != null">
+        tea_address,
+      </if>
+      <if test="teaBigdepartment != null">
+        tea_Bigdepartment,
+      </if>
+      <if test="teaTitle != null">
+        tea_title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teaId != null">
+        #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="teaPwd != null">
+        #{teaPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="teaName != null">
+        #{teaName,jdbcType=VARCHAR},
+      </if>
+      <if test="teaSex != null">
+        #{teaSex,jdbcType=VARCHAR},
+      </if>
+      <if test="teaBirth != null">
+        #{teaBirth,jdbcType=DATE},
+      </if>
+      <if test="teaPhone != null">
+        #{teaPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="teaEdu != null">
+        #{teaEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="teaGra != null">
+        #{teaGra,jdbcType=VARCHAR},
+      </if>
+      <if test="teaTimeofgra != null">
+        #{teaTimeofgra,jdbcType=VARCHAR},
+      </if>
+      <if test="teaSpecialty != null">
+        #{teaSpecialty,jdbcType=VARCHAR},
+      </if>
+      <if test="teaEntrytime != null">
+        #{teaEntrytime,jdbcType=DATE},
+      </if>
+      <if test="teaCertification != null">
+        #{teaCertification,jdbcType=VARCHAR},
+      </if>
+      <if test="teaCer != null">
+        #{teaCer,jdbcType=VARCHAR},
+      </if>
+      <if test="teaHobby != null">
+        #{teaHobby,jdbcType=VARCHAR},
+      </if>
+      <if test="teaSpe != null">
+        #{teaSpe,jdbcType=VARCHAR},
+      </if>
+      <if test="teaCha != null">
+        #{teaCha,jdbcType=VARCHAR},
+      </if>
+      <if test="teaMotto != null">
+        #{teaMotto,jdbcType=VARCHAR},
+      </if>
+      <if test="teaAddress != null">
+        #{teaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="teaBigdepartment != null">
+        #{teaBigdepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="teaTitle != null">
+        #{teaTitle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

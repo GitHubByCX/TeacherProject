@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/registered.js" charset="utf-8"></script>
+<body>
+	<!--
+	<h1 align="center">
+		登陆成功
+	</h1>
+	<form action="file.do" method="post">
+		<input type="file" name="file" id="file" value="" style="border: 1px black solid;" />
+		<input type="submit" value="提交"/>
+	</form>
+	-->
+	<table class="tabl" border="1">
+		<thead>
+			<th>教职工号</th>
+			<th>姓名</th>
+			<th>性别</th>
+			<th>手机号码</th>
+			<th>入职年份</th>
+			<th>是否有教师资格证</th>
+		</thead>
+		<tr class="neirong">
+
+			 
+		</tr> 
+	</table>
+	<form action="file.do" method="post" id="from" enctype="multipart/form-data">
+		<input type="file" name="file" id="file" />
+		<input type="submit" id="submi" value="提交"/>
+	</form>
+</body>
+
+<script>
+	$(function(){
+		 $.ajax("http://localhost:8080/DecisionAid/selectgerenziliao.do",// 发送请求的URL字符串。
+											
+											{
+											dataType : "json", // 预期服务器返回的数据类型。
+								   			type : "post", //  请求方式 POST或GET
+								   				
+								   			   // 发送到服务器的数据。 
+										    data:JSON.stringify({teaId:session}),
+										    contentType:"application/json", //  发送信息至服务器时的内容编码类型
+											
+										
+										   async: true , // 默认设置下，所有请求均为异步请求。如果设置为false，则发送同步请求
+										   // 请求成功后的回调函数。
+										   success :function(data){
+										  	$(".neirong").append("<td>"+data.teaId+"</td>");
+										  $(".neirong").append("<td>"+data.teaName+"</td>");
+										   $(".neirong").append("<td>"+data.teaSex+"</td>");
+											 $(".neirong").append("<td>"+data.teaPhone+"</td>");
+											   $(".neirong").append("<td>"+data.teaEntrytime+"</td>");
+											   $(".neirong").append("<td>"+data.teaCertification+"</td>");
+										   },error:function(){ 
+										   
+										   
+										   }
+						   // 请求出错时调用的函数
+						  
+									}); 
+	})
+
+	//from表单提交不跳转代码
+	
+</script>
+</html>

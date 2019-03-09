@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.ClassTeacherMapper">
+	<resultMap id="BaseResultMap" type="com.decision_aid.bean.ClassTeacher">
+		<id column="Id" jdbcType="INTEGER" property="id" />
+   		<result column="tId" jdbcType="INTEGER" property="tId" />
+    	<result column="c_bigPoints" jdbcType="INTEGER" property="bigPoints" />
+    	<result column="c_smallPoints" jdbcType="INTEGER" property="smallPoints" />
+    	<result column="c_totalPoints" jdbcType="INTEGER" property="totalPoints" />
+    	<result column="c_author" jdbcType="VARCHAR" property="author" />
+    	<result column="c_addTime" jdbcType="DATE" property="addTime" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+    Id, tId, c_bigPoints, c_smallPoints, c_totalPoints,c_author,c_addTime
+  </sql>
+</mapper>

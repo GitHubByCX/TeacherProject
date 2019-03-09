@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0" />
+
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/teacherInfo.css" />
+
+		<title></title>
+	</head>
+
+	<body>
+		<div class="container">
+			<form class="form-horizontal" role="form">
+				<!--基本信息-->
+				<input type="hidden" id="tea_id" value="" />
+				<div id="Info"> 
+					<h3>请填写基本信息</h3>
+					
+					<div class="form-group">
+						<label for="GetHonourTime">出生日期</label>
+						<div class="col-xs-12" style="display: flex;">  
+							<select class="form-control csrq" id="csnf"></select>
+							<select class="form-control csyf" id="csyf"></select>
+							<select class="form-control csrf" id="csrf"></select>
+						</div>
+					</div> 
+ 
+					<div class="form-group ">
+						<div class="col-xs-6">
+							<input type="radio" name="gender" value="男" class="teaSex" id="teaSex" checked="checked">男
+						</div>
+						<div class="col-xs-6">
+							<input type="radio" name="gender" value="女" id="teaSex">女
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12"> 
+							<label for="GetHonourTime">家庭住址</label>
+							<select id="address" class="form-control address">
+								<option>白云周边</option>
+								<option>非白云周边</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input type="number" class="form-control " id="teaPhone" placeholder="请输入您的电话">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<select class="form-control rznf" id="rznf">
+								<option>请选择您的入职年份</option>
+							</select>
+						</div>
+					</div>
+						<div class="form-group">
+						<div class="col-xs-12"> 
+							<label for="GetHonourTime">请选择系别</label>
+							<select id="teaCertification" class="form-control teaCertification">
+								<option>信息工程系</option> 
+								<option>现代交通系</option>
+								<option>基础学科部</option>
+								<option>机电系</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input type="text" class="form-control" id="nltc" placeholder="请输入您的能力特长">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input type="text" class="form-control" id="xgtd" placeholder="请输入您的性格特点">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input type="text" class="form-control" id="zym" placeholder="请输入您的座右铭">
+						</div>
+					</div>
+					<button type="button" class="btn btn-success col-xs-12" id="info-next" onclick="inspect()">下一步</button>
+					<br /><br />
+				</div>
+				<!--文化水平-->
+				<div id="Cultural-level">
+					<h3>请填写教育经历</h3>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input type="text" class="form-control" id="teaGra" placeholder="请输入您的毕业学校">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<select id="teaTimeOfGra" class="form-control bynf">
+								<option>请选择您的毕业年份</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-xs-12">
+							<select id="teaEdu" class="form-control">
+								<option value="未选择">请选择您的最高学历</option>
+								<option value="本科">本科</option>
+								<option value="硕士">硕士</option>
+								<option value="博士">博士</option>
+								<option value="其他">其他</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input type="text" id="teaSpecialty" class="form-control" placeholder="请输入您的毕业专业">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="qualification_certificate1" class="control-label">是否有教师资格证：</label>
+							<input type="radio" name="qualification_certificate" checked="checked" value="是" />是
+							<input type="radio" id="teaCertification" name="qualification_certificate" value="否" />否
+						</div>
+					</div>
+
+					<button type="button" class="btn btn-success col-xs-5" id="level-pre" style="margin-right: 15%;">上一步</button>
+					<button type="button" class="btn btn-success col-xs-5" id="level-next" onclick="inspectlevel()">下一步</button>
+					<br /><br />
+				</div>
+				<!--教学经验-->
+				<div id="Teaching-experience">
+					<h3>请填写教学经验</h3>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="Start-teaching-time">开始教学时间</label>
+							<select id="tTartTime" name="Start-teaching-time" class="form-control jxsj">
+								<option>请选择学年</option>
+							</select>
+							<select id="tsxq" class="form-control" style="margin-top: 5%;">
+								<option value="未选择">请选择学期</option>
+								<option value="第一学期">第一学期</option>
+								<option value="第二学期">第二学期</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="ServedAsTheClass" type="text" class="form-control" placeholder="请输入您的曾任课班级">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="ServedAsTheClassTwo" type="text" class="form-control" placeholder="请输入您的曾任课课程">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="TotalClassTime" type="number" class="form-control" placeholder="请输入您的授课总课时">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="TheTeachingEvaluation" type="text" class="form-control" placeholder="请输入您的授课效果评价">
+						</div>
+					</div>
+					<button type="button" class="btn btn-success col-xs-5" id="Teaching-pre" style="margin-right: 15%;">上一步</button>
+					<button type="button" class="btn btn-success col-xs-5" id="Teaching-next" onclick="inspectTeaching()">下一步</button>
+					<br /><br />
+				</div>
+				<!--企业经验-->
+				<div id="Enterprise-experience">
+					<h3>请填写企业经验</h3>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="EnterTheEnterpriseTime">进入企业时间</label>
+							<select id="EntryTime" name="EnterTheEnterpriseTime" class="form-control jrqysj">
+								<option id="SelectTheYear">请选择年份</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="EndOfEnterpriseTime">结束时间</label>
+							<select id="TheEndOfTime" name="EnterTheEnterpriseTime" class="form-control qyjssj">
+								<option id="EndOfTheYear">请选择年份</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="eWork" type="text" class="form-control" placeholder="请输入您的曾工作的公司或企业名称">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="eOperating" type="text" class="form-control" placeholder="请输入您的曾工作的公司或企业的职位">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label id="">工作内容</label><br />
+							<textarea id="eJob" rows="10" cols="30"></textarea>
+						</div>
+					</div>
+					<button type="button" class="btn btn-success col-xs-5" id="Enterprise-pre" style="margin-right: 15%;">上一步</button>
+					<button type="button" class="btn btn-success col-xs-5" onclick="inspectWork()" id="Enterprise-next">下一步</button>
+					<br /><br />
+				</div>
+				<!--取得荣誉-->
+				<div id="Honour">
+					<h3>请填写您曾获荣誉</h3>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="GetHonourTime">获奖时间</label>
+							<select id="hStratTime" name="GetHonourTimee" class="form-control hjsj">
+								<option id="">请选择年份</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="hCer" type="text" class="form-control" placeholder="您获得的证书">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="hOffice" type="text" class="form-control" placeholder="所发证书机关">
+						</div>
+					</div>
+					<button type="button" class="btn btn-success col-xs-5" id="Honour-pre" style="margin-right: 15%;">上一步</button>
+					<button type="button" class="btn btn-success col-xs-5" id="Honour-next" onclick="inspectHonner()">下一步</button>
+					<br /><br />
+				</div>
+				<!--近三年计划-->
+				<!--2019计划-->
+				<div id="Plan2019">
+					<h3>请输入您的近三年计划</h3>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label id="fYear" for="2019Plan" class="jnjh">2019计划</label>
+							<select name="2019EducationPlan" class="form-control" id="tpEdu">
+								<option value="未选择">请选择学历</option>
+								<option value="本科">本科</option>
+								<option value="硕士">硕士</option>
+								<option value="博士">博士</option>
+								<option value="其他">其他</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<select id="tpTechnical" name="2019TitlePlan" class="form-control">
+								<option value="未选择">请选择职称</option>
+								<option value="助教">助教</option>
+								<option value="讲师">讲师</option>
+								<option value="副教授">副教授</option>
+								<option value="教授">教授</option>
+								<option value="其他">其他</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<select id="tpSkill" name="2019SkillLevelPlan" class="form-control">
+								<option value="未选择">请选择技能等级</option>
+								<option value="初级">初级</option>
+								<option value="中级">中级</option>
+								<option value="高级">高级</option>
+								<option value="技师">技师</option>
+								<option value="高级技师">高级技师</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="ProfessionalAbility">专业能力</label><br />
+							<textarea id="tpAbility" name="ProfessionalAbility" rows="5" cols="30"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="TeachingAbility">教学能力</label><br />
+							<textarea id="tpTeaAbi" name="TeachingAbility" rows="5" cols="30"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="thesis">论文</label><br />
+							<textarea id="tpThesis" name="Thesis" rows="5" cols="30"></textarea>
+						</div>
+					</div>
+					<button type="button" class="btn btn-success col-xs-5" id="Plan-pre2019" style="margin-right: 15%;">上一步</button>
+					<button type="button" class="btn btn-success col-xs-5" id="Plan-next2019" onclick="inspect2019()">下一步</button>
+					<br /><br />
+				</div>
+				<!--2020计划-->
+				<div id="Plan2020">
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label id="" for="" class="mnjh">2020计划</label>
+							<select name="2019EducationPlan" class="form-control" id="tpEdu1">
+								<option id="" value="未选择">请选择学历</option>
+								<option value="本科">本科</option>
+								<option value="硕士">硕士</option>
+								<option value="博士">博士</option>
+								<option value="其他">其他</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<select id="tpTechnical1" name="2019TitlePlan" class="form-control">
+								<option value="未选择">请选择职称</option>
+								<option value="助教">助教</option>
+								<option value="讲师">讲师</option>
+								<option value="副教授">副教授</option>
+								<option value="教授">教授</option>
+								<option value="其他">其他</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<select id="tpSkill1" name="2019SkillLevelPlan" class="form-control">
+								<option value="未选择">请选择技能等级</option>
+								<option value="初级">初级</option>
+								<option value="中级">中级</option>
+								<option value="高级">高级</option>
+								<option value="技师">技师</option>
+								<option value="高级技师">高级技师</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="ProfessionalAbility">专业能力</label><br />
+							<textarea id="tpAbility1" name="ProfessionalAbility" rows="5" cols="30"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="TeachingAbility">教学能力</label><br />
+							<textarea id="tpTeaAbi1" name="TeachingAbility" rows="5" cols="30"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="thesis">论文</label><br />
+							<textarea id="tpThesis1" name="Thesis" rows="5" cols="30"></textarea>
+						</div>
+					</div>
+					<button type="button" class="btn btn-success col-xs-5" id="Plan-pre2020" style="margin-right: 15%;">上一步</button>
+					<button type="button" class="btn btn-success col-xs-5" id="Plan-next2020" onclick="inspect2020()">下一步</button>
+					<br /><br />
+				</div>
+				<!--2021计划-->
+				<div id="Plan2021">
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label id="" for="" class="hnjh">2021计划</label>
+							<select name="2021EducationPlan" class="form-control" id="tpEdu2">
+								<option value="未选择">请选择学历</option>
+								<option value="本科">本科</option>
+								<option value="硕士">硕士</option>
+								<option value="博士">博士</option>
+								<option value="其他">其他</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<select id="tpTechnical2" name="2019TitlePlan" class="form-control">
+								<option value="未选择">请选择职称</option>
+								<option value="助教">助教</option>
+								<option value="讲师">讲师</option>
+								<option value="副教授">副教授</option>
+								<option value="教授">教授</option>
+								<option value="其他">其他</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<select id="tpSkill2" name="2019SkillLevelPlan" class="form-control">
+								<option value="未选择">请选择技能等级</option>
+								<option value="初级">初级</option>
+								<option value="中级">中级</option>
+								<option value="高级">高级</option>
+								<option value="技师">技师</option>
+								<option value="高级技师">高级技师</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="ProfessionalAbility">专业能力</label><br />
+							<textarea id="tpAbility2" name="ProfessionalAbility" rows="5" cols="30"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="TeachingAbility">教学能力</label><br />
+							<textarea id="tpTeaAbi2" name="TeachingAbility" rows="5" cols="30"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="thesis">论文</label><br />
+							<textarea id="tpThesis2" name="Thesis" rows="5" cols="30"></textarea>
+						</div>
+					</div>
+					<button type="button" class="btn btn-success col-xs-5" id="Plan-pre2021" style="margin-right: 15%;">上一步</button>
+					<button type="button" class="btn btn-success col-xs-5" id="Plan-next2021" onclick="inspect2021()">下一步</button>
+					<br /><br />
+				</div>
+				<!--班主任工作经验-->
+				<div id="Headmaster">
+					<h3>请填写班主任经验</h3>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="StartHeadmasterTime">当班主任时间</label>
+							<select id="clStartTime" class="form-control dbzrsj">
+								<option>请选择学年</option>
+
+							</select>
+							<select id="bzrsxq" class="form-control" style="margin-top: 5%;">
+								<option id="" value="未选择">请选择学期</option>
+								<option id="" value="第一学期">第一学期</option>
+								<option id="" value="第二学期">第二学期</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="EndHeadmasterTime">结束时间</label>
+							<select id="clEndTime" class="form-control bzrjssj">
+								<option id="">请选择学年</option>
+
+							</select>
+							<select id="bzrexq" class="form-control" style="margin-top: 5%;">
+								<option id="" value="未选择">请选择学期</option>
+								<option id="" value="第一学期">第一学期</option>
+								<option id="" value="第二学期">第二学期</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="clClassName" type="text" class="form-control" placeholder="请输入您的曾带班班级">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="clNum" type="number" class="form-control" placeholder="请输入您的曾带班人数">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="clEvaluate" type="text" class="form-control" placeholder="请输入您的曾带班效果评价">
+						</div>
+					</div>
+					<button type="button" class="btn btn-success col-xs-5" id="Headmaster-pre" style="margin-right: 15%;">上一步</button>
+					<button type="button" class="btn btn-success col-xs-5" id="Headmaster-next" onclick="banzhurenjingyan()">下一步</button>
+					<br /><br />
+				</div>
+				<!--就业指导-->
+				<div id="EmploymentGuidance">
+					<h3>请填写就业指导经验</h3>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="StartEmploymentGuidanceTime">就业指导开始时间</label>
+							<select id="gdStartTime" class="form-control jyzdkssj">
+								<option>请选择学年</option>
+
+							</select>
+							<select id="jysxq" class="form-control" style="margin-top: 5%;">
+								<option id="" value="未选择">请选择学期</option>
+								<option id="" value="第一学期">第一学期</option>
+								<option id="" value="第二学期">第二学期</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label for="EndEmploymentGuidanceTime">结束时间</label>
+							<select id="gdEndTime" class="form-control jyzdjssj">
+								<option>请选择学年</option>
+
+							</select>
+							<select id="jyexq" class="form-control" style="margin-top: 5%;">
+								<option value="未选择">请选择学期</option>
+								<option value="第一学期">第一学期</option>
+								<option value="第二学期">第二学期</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="gdClass" type="text" class="form-control" placeholder="请输入您的曾带班班级">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="gdNum" type="number" class="form-control" placeholder="请输入您的曾带班人数">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input id="gdEvaluate" type="text" class="form-control" placeholder="请输入您的曾带班效果评价">
+						</div>
+					</div>
+					<button type="button" class="btn btn-success col-xs-12" id="EmploymentGuidance-pre">上一步</button>
+					<input onclick="jiuyezhidao()" type="button" value="提交" class="btn btn-success form-control" style="margin-top: 5%;" />
+				</div>
+			</form>
+		</div>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/registered.js" charset="utf-8"></script>
+		
+		<script>
+			function showPage(hide, show) {
+				$(hide).css("display", "none");
+				$(show).css("display", "block");
+			}
+
+			function xiayibu() {
+				showPage($("#Info"), $("#Cultural-level"));
+			}
+			$("#level-pre").click(function() {
+				showPage($("#Cultural-level"), $("#Info"));
+			})  
+
+			function xiayibu1() {
+				showPage($("#Cultural-level"), $("#Teaching-experience"));
+			}
+			$("#Teaching-pre").click(function() { 
+				showPage($("#Teaching-experience"), $("#Cultural-level"));
+			})
+ 
+			function xiayibu2() {
+				showPage($("#Teaching-experience"), $("#Enterprise-experience"));
+			}
+			$("#Enterprise-pre").click(function() {
+				showPage($("#Enterprise-experience"), $("#Teaching-experience"));
+			})
+
+			function xiayibu3() {
+				showPage($("#Enterprise-experience"), $("#Honour"));
+
+			}
+			$("#Honour-pre").click(function() {
+				showPage($("#Honour"), $("#Enterprise-experience"));
+			}) 
+
+			function xiayibu4() {
+				showPage($("#Honour"), $("#Plan2019"));
+			}
+			$("#Plan-pre2019").click(function() {
+				showPage($("#Plan2019"), $("#Honour"));
+			})
+
+			function xiayibu5() {
+				showPage($("#Plan2019"), $("#Plan2020"));
+			}
+			$("#Plan-pre2020").click(function() {
+				showPage($("#Plan2020"), $("#Plan2019"));
+			})
+
+			function xiayibu6() {
+				showPage($("#Plan2020"), $("#Plan2021"));
+			}
+			$("#Plan-pre2021").click(function() {
+				showPage($("#Plan2021"), $("#Plan2020"));
+			})
+
+			function xiayibu7() {
+				showPage($("#Plan2021"), $("#Headmaster"));
+			}
+			$("#Headmaster-pre").click(function() {
+				showPage($("#Headmaster"), $("#Plan2021"));
+			})
+			$("#Headmaster-next").click(function() {
+				showPage($("#Headmaster"), $("#EmploymentGuidance"));
+			})
+			$("#EmploymentGuidance-pre").click(function() {
+				showPage($("#EmploymentGuidance"), $("#Headmaster"));
+			})
+			//出生日期
+			csrq();
+
+			function csrq() {
+
+				for(var i = 1960; i < 2019; i++) {
+					 
+					$(".csrq").append("<option value='" + i + "'>" + i + "年</option>");
+				};
+
+				for(var i = 1; i < 13; i++) {
+					$(".csyf").append("<option value='" + i + "'>" + i + "月</option>");
+				}
+
+				for(var i = 1; i < 32; i++) {
+					$(".csrf").append("<option value='" + (i + 1) + "'>" + i + "日</option>");
+				}
+				for(var i = 1989; i < 2020; i++) {
+					$(".rznf").append("<option value='" + i + "-0-0'>" + i + "</option>"); 
+				}
+				for(var i = 1960; i < 2020; i++) {
+					$(".bynf").append("<option value='" + i + "年'>" + i + "年</option>");
+				}
+				for(var i = 1960; i < 2020; i++) {
+					$(".jxsj").append("<option value='" + i + "-" + (i + 1) + "年'>" + i + "-" + (i + 1) + "学年</option>");
+				}
+				for(var i = 1960; i < 2020; i++) {
+					$(".jsjxsj").append("<option value='" + i + "-" + (i + 1) + "年'>" + i + "-" + (i + 1) + "学年</option>");
+				}
+				for(var i = 1989; i < 2020; i++) {
+					$(".jrqysj").append("<option value='" + i + "'>" + i + "年</option>");
+				};
+				for(var i = 1989; i < 2020; i++) {
+					$(".qyjssj").append("<option value='" + i + "'>" + i + "年</option>");
+				};
+				for(var i = 1989; i < 2020; i++) {
+					$(".hjsj").append("<option value='" + i + "'>" + i + "年</option>");
+				};
+				for(var i = 1989; i < 2020; i++) {
+					$(".dbzrsj").append("<option value='" + i + "-" + (i + 1) + "年'>" + i + "-" + (i + 1) + "学年</option>");
+				}
+				for(var i = 1989; i < 2020; i++) {
+					$(".bzrjssj").append("<option value='" + i + "-" + (i + 1) + "年'>" + i + "-" + (i + 1) + "学年</option>");
+				}
+				for(var i = 1989; i < 2020; i++) {
+					$(".jyzdkssj").append("<option value='" + i + "-" + (i + 1) + "年'>" + i + "-" + (i + 1) + "学年</option>");
+				}
+				for(var i = 1989; i < 2020; i++) {
+					$(".jyzdjssj").append("<option value='" + i + "-" + (i + 1) + "年'>" + i + "-" + (i + 1) + "学年</option>");
+				}
+			}
+			//---------------------------------------------------------------------
+
+
+
+			function inspect() {
+				var username = $("#username").val();
+				var teaPhone = $("#teaPhone").val();
+				var nltc = $("#nltc").val();
+				var xgtd = $("#xgtd").val();
+				var zym = $("#zym").val();
+				var gender = $("input[name='gender']:checked").val();
+
+				if(teaPhone == "" || teaPhone == null || nltc == "" || nltc == null || xgtd == "" || xgtd == null || zym == "" || zym == null) {
+					alert("请填写数据");
+				} else {
+					//					alert("success");
+					xiayibu();
+					ajaxname();
+				}
+
+			}
+
+			function inspectlevel() {
+				var teaGra = $("#teaGra").val();
+				var teaSpecialty = $("#teaSpecialty").val();
+				
+				if(teaGra == "" || teaGra == null || teaSpecialty == "" || teaSpecialty == null) {
+					alert("请填写数据");
+				} else {
+					//					alert("success");
+					xiayibu1();
+					ajaxjiaoyujingli();
+				}
+			}
+
+			function inspectTeaching() {
+				var ServedAsTheClass = $("#ServedAsTheClass").val();
+				var ServedAsTheClassTwo = $("#ServedAsTheClassTwo").val();
+				var TotalClassTime = $("#TotalClassTime").val();
+				var TheTeachingEvaluation = $("#TheTeachingEvaluation").val();
+				if(ServedAsTheClass == "" || ServedAsTheClass == null || ServedAsTheClassTwo == "" || ServedAsTheClassTwo == null || TotalClassTime == "" || TotalClassTime == null || TheTeachingEvaluation == "" || TheTeachingEvaluation == null) {
+					alert("请填写数据");
+				} else {
+					//					alert("success");
+					xiayibu2();
+					jiaoxuejingyan()
+				}
+			}
+
+			function inspectWork() {
+				var eWork = $("#eWork").val();
+				var eOperating = $("#eOperating").val();
+				var eJob = $("#eJob").val();
+				if(eWork == "" || eWork == null || eOperating == "" || eOperating == null || eJob == "" || eJob == null) {
+					alert("请填写数据");
+				} else {
+					//					alert("success");
+					xiayibu3();
+					qiyejingyan();
+				}
+
+			}
+
+			function inspectHonner() {
+				var hCer = $("#hCer").val();
+				var hOffice = $("#hOffice").val();
+				if(hCer == "" || hCer == null || hOffice == "" || hOffice == null) {
+					alert("请填写数据");
+				} else {
+					//					alert("success");
+					xiayibu4();
+					cenghuorongyu();
+				}
+			}
+
+			function inspect2019() {
+				var tpAbility = $("#tpAbility").val();
+				var tpTeaAbi = $("#tpTeaAbi").val();
+				var tpThesis = $("#tpThesis").val();
+
+				if(tpAbility == "" || tpAbility == null || tpTeaAbi == "" || tpTeaAbi == null || tpThesis == "" || tpThesis == null) {
+					alert("请填写数据");
+				} else {
+					//					alert("success");
+					xiayibu5();
+					sannianguihua();
+				}
+			}
+
+			function inspect2020() {
+				var tpAbility1 = $("#tpAbility1").val();
+				var tpTeaAbi1 = $("#tpTeaAbi1").val();
+				var tpThesis1 = $("#tpThesis1").val();
+
+				if(tpAbility1 == "" || tpAbility1 == null || tpTeaAbi1 == "" || tpTeaAbi1 == null || tpThesis1 == "" || tpThesis1 == null) {
+					alert("请填写数据");
+				} else {
+					
+					xiayibu6();
+					sannianguihua1();
+				}
+			}
+
+			function inspect2021() {
+				var tpAbility2 = $("#tpAbility2").val();
+				var tpTeaAbi2 = $("#tpTeaAbi2").val();
+				var tpThesis2 = $("#tpThesis2").val();
+
+				if(tpAbility2 == "" || tpAbility2 == null || tpTeaAbi2 == "" || tpTeaAbi2 == null || tpThesis2 == "" || tpThesis2 == null) {
+					alert("请填写数据");
+				} else {
+					//					alert("success");
+					xiayibu7();
+					sannianguihua2();
+				}
+			}
+		</script>
+	</body>
+
+</html>

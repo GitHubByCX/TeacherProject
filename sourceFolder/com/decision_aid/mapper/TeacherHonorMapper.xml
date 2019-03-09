@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.TeacherHonorMapper">
+  <resultMap id="BaseResultMap" type="com.decision_aid.bean.TeacherHonor">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="tea_id" jdbcType="VARCHAR" property="teaId" />
+    <result column="h_stratTime" jdbcType="VARCHAR" property="hStrattime" />
+    <result column="h_endTime" jdbcType="VARCHAR" property="hEndtime" />
+    <result column="h_cer" jdbcType="VARCHAR" property="hCer" />
+    <result column="h_office" jdbcType="VARCHAR" property="hOffice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, tea_id, h_stratTime, h_endTime, h_cer, h_office
+  </sql>
+  
+  <!-- 通过teaId搜索teacher_honor(教师荣誉表)的数据 -->
+  <select id="selectTeacherHonorByTeaId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from teacher_honor where tea_id=#{teaId}
+  </select>
+  
+  <!-- 通过teaId搜索teacher_honor(教师荣誉表)的数据 -->
+  <update id="updateTeacherHonorByTeaId" parameterType="com.decision_aid.bean.TeacherHonor">
+    update teacher_honor
+    <set>
+      <if test="hStrattime != null">
+        h_stratTime = #{hStrattime,jdbcType=VARCHAR},
+      </if>
+      <if test="hEndtime != null">
+        h_endTime = #{hEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="hCer != null">
+        h_cer = #{hCer,jdbcType=VARCHAR},
+      </if>
+      <if test="hOffice != null">
+        h_office = #{hOffice,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tea_id = #{teaId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher_honor
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher_honor
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.decision_aid.bean.TeacherHonor">
+    insert into teacher_honor (Id, tea_id, h_stratTime, 
+      h_endTime, h_cer, h_office
+      )
+    values (#{id,jdbcType=INTEGER}, #{teaId,jdbcType=VARCHAR}, #{hStrattime,jdbcType=VARCHAR}, 
+      #{hEndtime,jdbcType=VARCHAR}, #{hCer,jdbcType=VARCHAR}, #{hOffice,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.decision_aid.bean.TeacherHonor">
+    insert into teacher_honor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="teaId != null">
+        tea_id,
+      </if>
+      <if test="hStrattime != null">
+        h_stratTime,
+      </if>
+      <if test="hEndtime != null">
+        h_endTime,
+      </if>
+      <if test="hCer != null">
+        h_cer,
+      </if>
+      <if test="hOffice != null">
+        h_office,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teaId != null">
+        #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="hStrattime != null">
+        #{hStrattime,jdbcType=VARCHAR},
+      </if>
+      <if test="hEndtime != null">
+        #{hEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="hCer != null">
+        #{hCer,jdbcType=VARCHAR},
+      </if>
+      <if test="hOffice != null">
+        #{hOffice,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.decision_aid.bean.TeacherHonor">
+    update teacher_honor
+    <set>
+      <if test="teaId != null">
+        tea_id = #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="hStrattime != null">
+        h_stratTime = #{hStrattime,jdbcType=VARCHAR},
+      </if>
+      <if test="hEndtime != null">
+        h_endTime = #{hEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="hCer != null">
+        h_cer = #{hCer,jdbcType=VARCHAR},
+      </if>
+      <if test="hOffice != null">
+        h_office = #{hOffice,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.decision_aid.bean.TeacherHonor">
+    update teacher_honor
+    set tea_id = #{teaId,jdbcType=VARCHAR},
+      h_stratTime = #{hStrattime,jdbcType=VARCHAR},
+      h_endTime = #{hEndtime,jdbcType=VARCHAR},
+      h_cer = #{hCer,jdbcType=VARCHAR},
+      h_office = #{hOffice,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="cenghuorongyu" parameterType="com.decision_aid.bean.TeacherHonor">
+  		insert into teacher_honor(tea_id,h_stratTime,h_cer,h_office) values(#{teaId},#{hStratTime},#{hCer},#{hOffice});
+  </insert>
+  
+  
+</mapper>

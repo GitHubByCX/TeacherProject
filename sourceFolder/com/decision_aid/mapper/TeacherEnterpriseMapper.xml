@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.TeacherEnterpriseMapper">
+  <resultMap id="BaseResultMap" type="com.decision_aid.bean.TeacherEnterprise">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="tea_id" jdbcType="VARCHAR" property="teaId" />
+    <result column="e_stratTime" jdbcType="VARCHAR" property="eStrattime" />
+    <result column="e_endTime" jdbcType="VARCHAR" property="eEndtime" />
+    <result column="e_work" jdbcType="VARCHAR" property="eWork" />
+    <result column="e_operating" jdbcType="VARCHAR" property="eOperating" />
+    <result column="e_job" jdbcType="VARCHAR" property="eJob" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, tea_id, e_stratTime, e_endTime, e_work, e_operating, e_job
+  </sql>
+  
+  <!-- 通过teaId搜索teacher_enterprise(老师企业经验表)的数据 -->
+  <select id="selectTeacherEnterpriseByTeaId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from teacher_enterprise where tea_id=#{teaId}
+  </select>
+  
+  <!-- 通过teaId修改teacher_enterprise(老师企业经验表)的数据 -->
+  <update id="updateTeacherEnterpriseByTeaId" parameterType="com.decision_aid.bean.TeacherEnterprise">
+    update teacher_enterprise
+    <set>
+      <if test="eStrattime != null">
+        e_stratTime = #{eStrattime,jdbcType=VARCHAR},
+      </if>
+      <if test="eEndtime != null">
+        e_endTime = #{eEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="eWork != null">
+        e_work = #{eWork,jdbcType=VARCHAR},
+      </if>
+      <if test="eOperating != null">
+        e_operating = #{eOperating,jdbcType=VARCHAR},
+      </if>
+      <if test="eJob != null">
+        e_job = #{eJob,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tea_id = #{teaId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher_enterprise
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher_enterprise
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.decision_aid.bean.TeacherEnterprise">
+    insert into teacher_enterprise (Id, tea_id, e_stratTime, 
+      e_endTime, e_work, e_operating, 
+      e_job)
+    values (#{id,jdbcType=INTEGER}, #{teaId,jdbcType=VARCHAR}, #{eStrattime,jdbcType=VARCHAR}, 
+      #{eEndtime,jdbcType=VARCHAR}, #{eWork,jdbcType=VARCHAR}, #{eOperating,jdbcType=VARCHAR}, 
+      #{eJob,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.decision_aid.bean.TeacherEnterprise">
+    insert into teacher_enterprise
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="teaId != null">
+        tea_id,
+      </if>
+      <if test="eStrattime != null">
+        e_stratTime,
+      </if>
+      <if test="eEndtime != null">
+        e_endTime,
+      </if>
+      <if test="eWork != null">
+        e_work,
+      </if>
+      <if test="eOperating != null">
+        e_operating,
+      </if>
+      <if test="eJob != null">
+        e_job,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teaId != null">
+        #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="eStrattime != null">
+        #{eStrattime,jdbcType=VARCHAR},
+      </if>
+      <if test="eEndtime != null">
+        #{eEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="eWork != null">
+        #{eWork,jdbcType=VARCHAR},
+      </if>
+      <if test="eOperating != null">
+        #{eOperating,jdbcType=VARCHAR},
+      </if>
+      <if test="eJob != null">
+        #{eJob,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.decision_aid.bean.TeacherEnterprise">
+    update teacher_enterprise
+    <set>
+      <if test="teaId != null">
+        tea_id = #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="eStrattime != null">
+        e_stratTime = #{eStrattime,jdbcType=VARCHAR},
+      </if>
+      <if test="eEndtime != null">
+        e_endTime = #{eEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="eWork != null">
+        e_work = #{eWork,jdbcType=VARCHAR},
+      </if>
+      <if test="eOperating != null">
+        e_operating = #{eOperating,jdbcType=VARCHAR},
+      </if>
+      <if test="eJob != null">
+        e_job = #{eJob,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.decision_aid.bean.TeacherEnterprise">
+    update teacher_enterprise
+    set tea_id = #{teaId,jdbcType=VARCHAR},
+      e_stratTime = #{eStrattime,jdbcType=VARCHAR},
+      e_endTime = #{eEndtime,jdbcType=VARCHAR},
+      e_work = #{eWork,jdbcType=VARCHAR},
+      e_operating = #{eOperating,jdbcType=VARCHAR},
+      e_job = #{eJob,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="inserqiyejingyan" parameterType="com.decision_aid.bean.TeacherEnterprise">
+  		
+  	  INSERT INTO teacher_enterprise(tea_id,e_stratTime,e_endTime,e_work,e_operating,e_job) VALUES (#{teaId},#{eStratTime},#{eEndTime},#{eWork},#{eOperating},#{eJob});
+  </insert>
+ 
+  
+</mapper>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.GdCounselMapper">
+  <resultMap id="BaseResultMap" type="com.decision_aid.bean.GdCounsel">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="tea_id" jdbcType="VARCHAR" property="teaId" />
+    <result column="gd_startTime" jdbcType="VARCHAR" property="gdStarttime" />
+    <result column="gd_start" jdbcType="VARCHAR" property="gdStart" />
+    <result column="gd_class" jdbcType="VARCHAR" property="gdClass" />
+    <result column="gd_num" jdbcType="INTEGER" property="gdNum" />
+    <result column="gd_evaluate" jdbcType="VARCHAR" property="gdEvaluate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, tea_id, gd_startTime, gd_start, gd_class, gd_num, gd_evaluate
+  </sql>
+  
+  <!-- 通过teaId搜索gd_counsel(实习就业指导经验表)的数据 -->
+  <select id="selectGdCounselByTeaId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from gd_counsel where tea_id=#{teaId}
+  </select>
+  
+  <!-- 通过teaId修改gd_counsel(实习就业指导经验表)的数据 -->
+  <update id="updateGdCounselByTeaId" parameterType="com.decision_aid.bean.GdCounsel">
+    update gd_counsel
+    <set>
+      <if test="gdStarttime != null">
+        gd_startTime = #{gdStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="gdStart != null">
+        gd_start = #{gdStart,jdbcType=VARCHAR},
+      </if>
+      <if test="gdClass != null">
+        gd_class = #{gdClass,jdbcType=VARCHAR},
+      </if>
+      <if test="gdNum != null">
+        gd_num = #{gdNum,jdbcType=INTEGER},
+      </if>
+      <if test="gdEvaluate != null">
+        gd_evaluate = #{gdEvaluate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tea_id = #{teaId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gd_counsel
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gd_counsel
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.decision_aid.bean.GdCounsel">
+    insert into gd_counsel (Id, tea_id, gd_startTime, 
+      gd_start, gd_class, gd_num, 
+      gd_evaluate)
+    values (#{id,jdbcType=INTEGER}, #{teaId,jdbcType=VARCHAR}, #{gdStarttime,jdbcType=VARCHAR}, 
+      #{gdStart,jdbcType=VARCHAR}, #{gdClass,jdbcType=VARCHAR}, #{gdNum,jdbcType=INTEGER}, 
+      #{gdEvaluate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.decision_aid.bean.GdCounsel">
+    insert into gd_counsel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="teaId != null">
+        tea_id,
+      </if>
+      <if test="gdStarttime != null">
+        gd_startTime,
+      </if>
+      <if test="gdStart != null">
+        gd_start,
+      </if>
+      <if test="gdClass != null">
+        gd_class,
+      </if>
+      <if test="gdNum != null">
+        gd_num,
+      </if>
+      <if test="gdEvaluate != null">
+        gd_evaluate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teaId != null">
+        #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="gdStarttime != null">
+        #{gdStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="gdStart != null">
+        #{gdStart,jdbcType=VARCHAR},
+      </if>
+      <if test="gdClass != null">
+        #{gdClass,jdbcType=VARCHAR},
+      </if>
+      <if test="gdNum != null">
+        #{gdNum,jdbcType=INTEGER},
+      </if>
+      <if test="gdEvaluate != null">
+        #{gdEvaluate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.decision_aid.bean.GdCounsel">
+    update gd_counsel
+    <set>
+      <if test="teaId != null">
+        tea_id = #{teaId,jdbcType=VARCHAR},
+      </if>
+      <if test="gdStarttime != null">
+        gd_startTime = #{gdStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="gdStart != null">
+        gd_start = #{gdStart,jdbcType=VARCHAR},
+      </if>
+      <if test="gdClass != null">
+        gd_class = #{gdClass,jdbcType=VARCHAR},
+      </if>
+      <if test="gdNum != null">
+        gd_num = #{gdNum,jdbcType=INTEGER},
+      </if>
+      <if test="gdEvaluate != null">
+        gd_evaluate = #{gdEvaluate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.decision_aid.bean.GdCounsel">
+    update gd_counsel
+    set tea_id = #{teaId,jdbcType=VARCHAR},
+      gd_startTime = #{gdStarttime,jdbcType=VARCHAR},
+      gd_start = #{gdStart,jdbcType=VARCHAR},
+      gd_class = #{gdClass,jdbcType=VARCHAR},
+      gd_num = #{gdNum,jdbcType=INTEGER},
+      gd_evaluate = #{gdEvaluate,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertjiuyezhidao" parameterType="com.decision_aid.bean.GdCounsel">
+  	insert into gd_counsel(tea_id,gd_startTime,gd_class,gd_num,gd_evaluate) values(#{teaId},#{gdStartTime},#{gdClass},#{gdNum},#{gdEvaluate});
+  </insert>
+  
+  
+</mapper>

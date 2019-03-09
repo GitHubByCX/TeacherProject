@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decision_aid.mapper.MonthlyCheckMapper">
+	<resultMap id="BaseResultMap" type="com.decision_aid.bean.MonthlyCheck">
+		<id column="Id" jdbcType="INTEGER" property="id" />
+   		<result column="tId" jdbcType="INTEGER" property="tId" />
+    	<result column="check_time" jdbcType="DATE" property="checkTime" />
+    	<result column="self_rating" jdbcType="INTEGER" property="selfRating" />
+    	<result column="sc_rating" jdbcType="INTEGER" property="scRating" />
+    	<result column="dh_rating" jdbcType="INTEGER" property="dhRating" />
+    	<result column="check_type" jdbcType="VARCHAR" property="checkType" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+    Id, tId, check_time, self_rating, sc_rating,dh_rating,check_type
+  </sql>
+</mapper>
